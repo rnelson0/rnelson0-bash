@@ -1,0 +1,7 @@
+#!/bin/sh
+cat > ~/.vimrc << EOF
+" This file is managed by 'rnelson0-bash'
+
+set mouse=a
+
+EOF
