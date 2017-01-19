@@ -6,8 +6,8 @@ then
   cat >> ~/.bashrc << EOF
 alias be='bundle exec'
 alias bi='bundle install --path vendor --without system_tests development'
-alias updatemaster='git checkout master && git fetch origin --prune && git pull origin master'
-alias updateprod='git checkout production && git fetch origin --prune && git pull origin production'
+alias updatemaster='git checkout master && git fetch origin --prune --tags && git pull origin master'
+alias updateprod='git checkout production && git fetch origin --prune --tags && git pull origin production'
 
 # Get to the top of a git tree
 cdp () {
