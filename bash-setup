@@ -3,7 +3,7 @@ grep "^alias" ~/.bashrc > /dev/null
 if [ "$?" -eq 1 ]
 then
 
-  cat >> ~/.bashrc << EOF
+  cat >> ~/.bashrc << 'EOF'
 alias be='bundle exec'
 alias bi='bundle install --path vendor --without system_tests development'
 alias updatemaster='git checkout master && git fetch origin --prune && git fetch origin --tags && git pull origin master'
