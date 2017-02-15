@@ -12,23 +12,34 @@ alias updateprod='git checkout production && git fetch origin --prune && git fet
 # Get to the top of a git tree
 cdp () {
 
-  TEMP_PWD=`pwd`
+  TEMP_PWD=/home/rnelson0
   while ! [ -d .git ]; do
   cd ..
   done
-  OLDPWD=$TEMP_PWD
+  OLDPWD=
 
 }
 
 # Check out a Pull request from github
 function pr() {
-  id=$1
-  if [ -z $id ]; then
+  id=
+  if [ -z  ]; then
       echo "Need Pull request number as argument"
       return 1
   fi
-  git fetch origin pull/${id}/head:pr_${id}
-  git checkout pr_${id}
+  git fetch origin pull//head:pr_
+  git checkout pr_
+}
+
+man() {
+  env \
+    LESS_TERMCAP_md=$'\e[1;36m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[1;40;92m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[4;38m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+      man "$@"
 }
 EOF
 
