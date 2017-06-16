@@ -41,6 +41,8 @@ man() {
     LESS_TERMCAP_ue=$'\e[0m' \
       man "$@"
 }
+
+export SUDO_EDITOR=/bin/vim
 EOF
 
 fi
