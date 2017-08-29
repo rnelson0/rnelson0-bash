@@ -2,6 +2,7 @@
 cat > ~/.vimrc << EOF
 " This file is managed by 'rnelson0-bash'
 
-set mouse=a
+set mouse=a " Enable mouse control
+map ,/ :silent noh<CR> " Unhighlight current search results
 
 EOF
