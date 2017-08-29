@@ -1,8 +1,11 @@
 #!/bin/sh
 cat > ~/.vimrc << EOF
 " This file is managed by 'rnelson0-bash'
+" All comments PRECEDE the stanza they refer to
 
-set mouse=a " Enable mouse control
-map ,/ :silent noh<CR> " Unhighlight current search results
+" Enable mouse control
+set mouse=a
+" Unhighlight current search results
+map ,/ :silent noh<CR>
 
 EOF
