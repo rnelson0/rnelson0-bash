@@ -8,4 +8,8 @@ set mouse=a
 " Unhighlight current search results
 map ,/ :silent noh<CR>
 
+" Show non-ASCII characters (like emoji) with a red highlight
+highlight nonascii guibg=Red ctermbg=1 term=standout
+au BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
+
 EOF
