@@ -43,6 +43,9 @@ man() {
 }
 
 export SUDO_EDITOR=/bin/vim
+
+HISTSIZE=10000
+HISTFILESIZE=10000
 EOF
 
 fi
