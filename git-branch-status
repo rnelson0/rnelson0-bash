@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Adapted from https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch
+# Shows +- commit comparison between local branches and the default branch
+REMOTES="$@";
+if [ -z "$REMOTES" ]; then
+  REMOTES=$(git remote);
+fi
+REMOTES=$(echo "$REMOTES" | xargs -n1 echo)
+echo "$REMOTES" | while read REMOTE; do
+  DEFAULT=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  git remote show $REMOTE -n \
+    | awk '/merges with remote/{print $5" "$1}' \
+    | while read line; do
+    RB=$DEFAULT
+    ARB="refs/remotes/$REMOTE/$RB";
+    LB=$(echo "$line"|cut -f2 -d" ");
+    if [ "$LB" = "$DEFAULT" ]; then
+      continue
+    fi
+    ALB="refs/heads/$LB";
+
+    # This is in reference to the local branch.
+    NBEHIND=$(( $(git rev-list --count $ALB..$ARB 2>/dev/null) +0));
+    NAHEAD=$(( $(git rev-list --count $ARB..$ALB 2>/dev/null) +0));
+
+    if [ "$NBEHIND" -gt 0 -a "$NAHEAD" -gt 0 ]; then
+      echo "$LB <--> $REMOTE/$RB: -$NBEHIND +$NAHEAD";
+    elif [ "$NBEHIND" -gt 0 ]; then
+      echo "$LB <--> $REMOTE/$RB: -$NBEHIND";
+    elif [ "$NAHEAD" -gt 0 ]; then
+      echo "$LB <--> $REMOTE/$RB: +$NAHEAD";
+    fi
+  done
+done
