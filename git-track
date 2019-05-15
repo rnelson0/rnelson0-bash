@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Track the current branch against origin/BRANCH
+REMOTE="origin"
+git branch -u ${REMOTE}/$(git branch | grep '*' | cut -d' ' -f2)
