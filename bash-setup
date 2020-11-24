@@ -6,8 +6,8 @@ then
   cat >> ~/.bashrc << 'EOF'
 alias be='bundle exec'
 alias bi='bundle install --path vendor --without system_tests development'
-alias updatemaster='git checkout master && git fetch origin --prune && git fetch origin --tags && git pull origin master'
-alias updateprod='git checkout production && git fetch origin --prune && git fetch origin --tags && git pull origin production'
+alias updateorigin='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git fetch origin --prune && git fetch origin --tags && git pull origin $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')'
+
 
 # Get to the top of a git tree
 cdp () {
