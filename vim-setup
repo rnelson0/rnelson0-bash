@@ -7,6 +7,8 @@ cat > ~/.vimrc << EOF
 set mouse=a
 " Unhighlight current search results
 map ,/ :silent noh<CR>
+" Use the full screen
+set textwidth=200
 
 " Show non-ASCII characters (like emoji) with a red highlight
 highlight nonascii guibg=Red ctermbg=1 term=standout
